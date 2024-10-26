@@ -1,5 +1,5 @@
 
-const BASE_URL = "https://foodmine-backend-ecru.vercel.app"
+const BASE_URL = "https://foodmine-backend-kappa.vercel.app"
 export const FOODS_URL = BASE_URL + "/api/foods";
 export const ADD_FOOD_URL = FOODS_URL + "/add-food";
 export const FOODS_TAGS_URL = FOODS_URL + "/tags";
