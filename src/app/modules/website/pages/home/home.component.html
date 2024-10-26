@@ -1,0 +1,83 @@
+<section class="container py-10" id="home-page">
+    <!-- Search  -->
+    <div class="flex justify-center mb-10">
+        <input type="text" #searchInput placeholder="Search Food Mine!" (keyup.enter)="search(searchInput.value)"
+            class="py-2 px-4 shadow-cardBoxShadow rounded-tl-full rounded-bl-full outline-none placeholder:text-sm">
+        <button class="text-sm text-white font-sans bg-primary rounded-tr-full rounded-br-full px-2 opacity-90 hover:opacity-100"
+            (click)="search(searchInput.value)">
+            Search
+        </button>
+    </div>
+    <!-- when There Is No Home Page Data  -->
+    <div class="my-10">
+        <not-found-page [visible]="!foodItems || !foodItems.length" notFoundMessage="Nothing Found!"
+            resetLinkText="Reset search"></not-found-page>
+    </div>
+    <!-- Home Page Content  -->
+    <ng-container *ngIf="foodItems">
+        <!-- Tags  -->
+        <div class="flex flex-wrap gap-3">
+            <a routerLink="/tag/{{tag.name}}" routerLinkActive="active" *ngFor="let tag of tags"
+                class="bg-[#f0f0f0] text-[13px] rounded-lg py-1 px-5">
+                {{tag.name}}({{tag.count}})
+            </a>
+        </div>
+
+        <!-- Food Items -->
+        <div class="grid grid-cols-4 gap-7 my-5">
+            <ul *ngFor="let food of foodItems; let i = index">
+                <li class="shadow-cardBoxShadow rounded-lg hover:opacity-85">
+                    <a routerLink="/food/{{food.id}}">
+                        <img [ngSrc]="food.imgUrl" alt="food-image" width="100" height="100"
+                            class="h-56 object-fill w-full rounded-t-lg rounded-tr-lg">
+                        <!-- Content  -->
+                        <div class="p-3 font-sans relative">
+                            <p class="text-primary">{{ food.name }}</p>
+                            <span [ngClass]="{'text-primary':food.favourite , 'text-grey':!food.favourite}"
+                                class="absolute top-3 right-2">❤</span>
+                            <!-- Rating  -->
+                            <div>
+                                <!-- <star-rating [value]="food.stars" [totalstars]="5" checkedcolor="red" uncheckedcolor="black" size="22px"
+                    [readonly]="true">
+                </star-rating> -->
+                            </div>
+                            <div class="flex justify-between my-2">
+                                <ng-container *ngFor="let origin of food.origins">
+                                    <p class="text-sm bg-gre">{{origin}}</p>
+                                </ng-container>
+                                <p class="text-xs"><span>🕓</span> {{food.cookTime}}</p>
+                            </div>
+
+                            <p class="text-sm">{{food.price | currency}}</p>
+
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </ng-container>
+
+</section>
+
+
+
+<!-- drag-drop.component.html -->
+<div class="drag-container">
+    <div
+      *ngFor="let item of items"
+      class="draggable"
+      draggable="true"
+      (dragstart)="onDragStart($event, item)"
+    >
+      {{ item.name }}
+    </div>
+  </div>
+  
+  <div
+    class="drop-zone"
+    (dragover)="onDragOver($event)"
+    (drop)="onDrop($event)"
+  >
+    Drop items here
+  </div>
+  

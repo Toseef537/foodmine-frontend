@@ -1,0 +1,96 @@
+<section id="orders-page" class="">
+    <!-- <div class="flex justify-end my-4">
+        <button class="call-to-action-outlined" (click)="addOrder()">Add Order</button>
+    </div> -->
+    <h1 class="my-5 text-4xl font-serif px-6">Orders</h1>
+    <!-- Orders Table -->
+    <div class="flex flex-col font-sans" *ngIf="orders && orders.length > 0">
+        <div class="-m-1.5 overflow-x-auto">
+            <div class="p-1.5 min-w-full inline-block align-middle">
+                <div class="overflow-hidden">
+                    <table class="min-w-full leading-[189%] border-separate border-spacing-y-2 px-1">
+                        <thead class="bg-transparent text-black ">
+                            <tr class="h-2 font-sans text-lg">
+                                <th scope="col" class="px-6 py-3 text-left font-medium">Order ID</th>
+                                <th scope="col" class="px-6 py-3 text-left font-medium ">Customer Name</th>
+                                <th scope="col" class="px-6 py-3 text-left font-medium">Address</th>
+                                <th scope="col" class="px-6 py-3 text-left font-medium hidden md:table-cell">Total Price
+                                </th>
+                                <th scope="col" class="px-6 py-3 text-left font-medium">Items</th>
+                                <th scope="col" class="px-6 py-3 text-left font-medium">Status</th>
+                                <th scope="col" class="px-6 py-3 text-left font-medium">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-transparent text-grey">
+                            <ng-container *ngFor="let order of orders">
+                                <tr class="h-16 cursor-pointer shadow-cardBoxShadow rounded-[16px] text-base">
+                                    <td class="px-6 py-4 rounded-tl-[16px] rounded-bl-[16px]">{{ order.id }}</td>
+                                    <td class="px-6 py-4">{{ order.name }}</td>
+                                    <td class="px-6 py-4">{{ order.address }}</td>
+                                    <td class="px-6 py-4 hidden md:table-cell">{{ order.totalPrice | currency }}</td>
+                                    <td class="px-6 py-4">
+                                        <ul>
+                                            <li>
+                                                <span>{{ order.items.length}}</span>
+                                            </li>
+                                        </ul>
+                                    </td>
+                                    <td class="px-6 py-4 "><span class="bg-[#B4E380] px-6 py-1 rounded-full text-[#1A5D1A]">{{ order.status }}</span></td>
+                                    <td class="px-6 py-4 flex items-center  gap-3">
+                                        <button (click)="viewOrderDetails(order)" class="bg-primary-light text-primary text-base hover:bg-primary hover:text-primary-light px-4 py-1 rounded-lg"> 
+                                            View Detail
+                                        </button>
+                                    </td>
+                                </tr>
+                            </ng-container>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+<!-- <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource">
+        <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef> Order Id </th>
+            <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+        </ng-container>
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Customer Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+        <ng-container matColumnDef="address">
+            <th mat-header-cell *matHeaderCellDef> Address </th>
+            <td mat-cell *matCellDef="let element"> {{element.address}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="price">
+            <th mat-header-cell *matHeaderCellDef> Total Price </th>
+            <td mat-cell *matCellDef="let element"> {{element.totalPrice|currency}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="items">
+            <th mat-header-cell *matHeaderCellDef> Items</th>
+            <td mat-cell *matCellDef="let element"> {{element.items.length}} </td>
+        </ng-container> 
+        <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef> Status </th>
+            <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+        </ng-container> 
+        <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef> Actions </th>
+            <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of periodic elements">
+    </mat-paginator>
+</div> -->

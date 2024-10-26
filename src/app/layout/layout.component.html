@@ -1,0 +1,10 @@
+<!-- Loading Component  -->
+<ng-container *ngIf="isLoading">
+    <loading></loading>
+</ng-container>
+
+<!-- Website Layout  -->
+ <website-layout *ngIf="layout === 'website'"></website-layout>
+ 
+<!-- Dashboard Layout  -->
+<dashboard-layout *ngIf="layout === 'dashboard'"></dashboard-layout>

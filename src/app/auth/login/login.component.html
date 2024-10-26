@@ -1,0 +1,39 @@
+<div class="container flex flex-col items-center justify-center h-full pt-32 font-sans">
+    <h1 class="my-5 font-serif font-medium text-3xl text-primary">Login</h1>
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
+        <div class="flex flex-col gap-5 w-[30vw]">
+
+            <!-- Email  -->
+            <input-container labelFor="email" label="Email* ">
+                <input ngProjectAs="input-content" type="text" id="email"
+                    class="block px-4 py-4 w-full text-base text-grey bg-transparent rounded-lg border-1 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                    placeholder=" " formControlName="email" />
+
+                <div *ngIf="getFormControl('email')?.errors" ngProjectAs="validation-content">
+                    <p *ngIf="getFormControl('email')?.errors?.['required'] && getFormControl('email')?.touched"
+                        class="text-primary text-sm m-2">Email is required</p>
+                    <p *ngIf="getFormControl('email')?.errors?.['email'] && getFormControl('email')?.touched"
+                        class="text-primary text-sm m-2">Email is not correct</p>
+                </div>
+            </input-container>
+
+            <!-- Password  -->
+            <input-container labelFor="password" label="Password* ">
+                <input ngProjectAs="input-content" type="password" id="password"
+                    class="block px-4 py-4 w-full text-base text-grey bg-transparent rounded-lg border-1 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                    placeholder=" " formControlName="password" />
+
+                <p ngProjectAs="validation-content"
+                    *ngIf="getFormControl('password')?.errors?.['required'] && getFormControl('password')?.touched"
+                    class="text-primary text-sm m-2">Password is required</p>
+            </input-container>
+
+            <!-- Login Button  -->
+            <button type="submit" class="w-full bg-primary py-4 rounded-full text-lg text-white">Login</button>
+
+            <p class="text-center text-grey">New user? <a routerLink="/register"
+                    class="underline text-grey">Register here</a></p>
+        </div>
+
+    </form>
+</div>

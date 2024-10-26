@@ -1,0 +1,66 @@
+<div class="container py-10 grid grid-cols-2 gap-10 font-sans">
+    <form [formGroup]="checkoutForm" (ngSubmit)="createOrder()" class="flex flex-col gap-5">
+        <!-- Name  -->
+        <input-container labelFor="name" label="Name* ">
+            <input ngProjectAs="input-content" type="text" id="name"
+                class="block px-4 py-4 w-full text-base text-grey bg-transparent rounded-lg border-1 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                placeholder=" " formControlName="name" />
+        </input-container>
+
+        <!-- Address  -->
+        <input-container labelFor="address" label="Address* ">
+            <input ngProjectAs="input-content" type="address" id="address"
+                class="block px-4 py-4 w-full text-base text-grey bg-transparent rounded-lg border-1 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                placeholder=" " formControlName="address" />
+        </input-container>
+
+        <!-- Order Items List Table  -->
+        <table>
+            <tr>
+                <td colspan="5">
+                    <h3>Order Items:</h3>
+                </td>
+            </tr>
+            <tr *ngFor="let item of order.items">
+                <td>
+                    <a routerLink="/food/{{item.food.id}}">
+                        <img [src]="item.food.imgUrl" />
+                    </a>
+                </td>
+                <td>
+                    {{item.food.name}}
+                </td>
+                <td>
+                    {{item.food.price | currency}}
+                </td>
+                <td>
+                    {{item.quantity}}
+                </td>
+                <td>
+                    {{item.price | currency}}
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3"></td>
+                <td>
+                    <strong>
+                        Total :
+                    </strong>
+                </td>
+                <td>
+                    <strong>
+                        {{order.totalPrice | currency}}
+                    </strong>
+                </td>
+            </tr>
+        </table>
+
+        <!-- Login Button  -->
+        <button type="submit" class="w-full bg-primary py-4 rounded-md text-lg text-white opacity-90 hover:opacity-100"  (click)="createOrder" >Place Order</button>
+    </form>
+    <div >
+        <h1 class="text-2xl font-serif mb-5">Choose Your Address On Map</h1>
+        <!-- Map Component  -->
+        <map [order]="order"></map>
+    </div>
+</div>

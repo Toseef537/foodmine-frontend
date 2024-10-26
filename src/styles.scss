@@ -1,0 +1,48 @@
+/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import 'ngx-toastr/toastr';
+// a {
+//     @apply text-text-primary hover:bg-text-hover hover:text-[#ffff]  min-w-96 p-2 text-base;
+// }
+
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@200..900&display=swap');
+
+html,
+body {
+    height: 100%;
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.active {
+    @apply bg-primary text-white;
+}
+
+/* Call To Action */
+.call-to-action-outlined {
+    @apply text-primary border border-primary lg:text-base px-8 py-2 bg-white font-normal rounded-[0.625rem];
+
+    &:hover,
+    &:focus {
+        @apply border border-primary-light bg-primary-light;
+    }
+}
+
+.router-link-active{
+    @apply text-primary bg-primary-light;
+}
+
+.dashboard-sidebar-items-hover{
+    &:hover{
+        @apply text-primary bg-primary-light;
+    }
+
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

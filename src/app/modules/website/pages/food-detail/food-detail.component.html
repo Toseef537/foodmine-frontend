@@ -1,0 +1,51 @@
+<!-- When There IS No Data  -->
+<not-found-page [visible]="!food.id" notFoundMessage="Food Not Found!" resetLinkText="Go To HomePage"></not-found-page>
+
+<!-- Food Details  -->
+<section id="food-details">
+    <div class="container flex gap-10 justify-center items-center my-16" *ngIf="food">
+        <img [ngSrc]="food.imgUrl" alt="food-details-image" width="384" height="384"
+            class="w-96 h-96 flex-shrink-0  rounded-3xl">
+
+        <!-- Food Details  -->
+        <div class="p-3  font-sans text-4xl">
+            <div class="flex gap-20">
+                <p class="mb-4">{{ food.name }}</p>
+                <span [ngClass]="{'text-primary':food.favourite , 'text-grey':!food.favourite}">❤</span>
+            </div>
+
+            <!-- Rating  -->
+            <div>
+                <!-- <star-rating [value]="food.stars" [totalstars]="5" checkedcolor="red" uncheckedcolor="black" size="22px"
+                        [readonly]="true">
+                    </star-rating> -->
+            </div>
+
+            <!-- Food Origins  -->
+            <ng-container *ngFor="let origin of food.origins">
+                <p class="text-sm bg-grey my-2 rounded-full py-1 px-4 bg-[#dee7e9] w-fit">{{origin}}</p>
+            </ng-container>
+
+            <!-- Food tags  -->
+            <div class="flex gap-2 text-sm">
+                <a routerLink="/tag/{{tag}}" *ngFor="let tag of food.tags"
+                    class="text-[13px] bg-grey my-2 bg-[#f0f0f0] text-[#40A2E3] rounded-full py-1 px-4">
+                    {{tag}}
+                </a>
+            </div>
+
+            <!-- Time to Cook  -->
+            <p class="text-lg my-2">Time to cook about <strong>{{food.cookTime}}</strong> minutes! </p>
+
+            <!-- Food Price  -->
+            <p class="text-lg my-2">Price : <span class="text-[#9BEC00]">{{food.price | currency}}</span></p>
+
+            <!-- Add to Cart Button  -->
+            <button class="rounded-full bg-primary px-4 py-2 text-white text-lg w-full my-3 hover:opacity-90"
+                (click)="addToCart()">Add to
+                cart</button>
+
+        </div>
+
+    </div>
+</section>
