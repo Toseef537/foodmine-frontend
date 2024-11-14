@@ -58,26 +58,4 @@
     </ng-container>
 
 </section>
-
-
-
-<!-- drag-drop.component.html -->
-<div class="drag-container">
-    <div
-      *ngFor="let item of items"
-      class="draggable"
-      draggable="true"
-      (dragstart)="onDragStart($event, item)"
-    >
-      {{ item.name }}
-    </div>
-  </div>
-  
-  <div
-    class="drop-zone"
-    (dragover)="onDragOver($event)"
-    (drop)="onDrop($event)"
-  >
-    Drop items here
-  </div>
   

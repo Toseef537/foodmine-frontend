@@ -1,10 +1,10 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import { OrderService } from 'src/app/common/services/order.service';
-import { Order } from 'src/app/shared/models/order';
 import { Dialog } from '@angular/cdk/dialog';
 import { MatDialogModule } from '@angular/material/dialog';
 import { OrderDetailComponent } from 'src/app/common/modals/order-detail/order-detail.component';
+import { Order } from 'src/app/core/models/order';
+import { OrderService } from 'src/app/core/services/order.service';
 
 @Component({
   selector: 'app-orders-page',

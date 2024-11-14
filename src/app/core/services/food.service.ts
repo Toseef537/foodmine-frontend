@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ADD_FOOD_URL, DELETE_FOOD_URL, Update_FOOD_URL } from 'src/app/constants/urls';
-import { IFood } from 'src/app/shared/models/food';
 import { HomeService } from './website/home.service';
+import { ADD_FOOD_URL, DELETE_FOOD_URL, Update_FOOD_URL } from 'src/app/common/constants/urls';
+import { IFood } from '../models/food';
 
 @Injectable({
   providedIn: 'root'

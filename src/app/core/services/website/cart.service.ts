@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
-import { ADD_TO_CART_URL, DELETE_CART_ITEM_URL, GET_CART_URL } from 'src/app/constants/urls';
-import { Cart } from 'src/app/shared/models/cart';
-import { IFood } from 'src/app/shared/models/food';
-import { CartItem } from 'src/app/shared/models/items';
+import { ADD_TO_CART_URL, GET_CART_URL, DELETE_CART_ITEM_URL } from 'src/app/common/constants/urls';
+import { Cart } from '../../models/cart';
+import { IFood } from '../../models/food';
+import { CartItem } from '../../models/items';
 
 @Injectable({
   providedIn: 'root'

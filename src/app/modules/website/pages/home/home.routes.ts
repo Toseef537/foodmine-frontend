@@ -5,10 +5,12 @@ import { homeResolver } from "./home.resolver";
 export default [
     {
         path: '', component: HomeComponent,
-        title:'Home | Food Mine',
-        resolve:{
-           homeData:homeResolver 
+        title: 'Home | Food Mine',
+        resolve: {
+            homeData: homeResolver
         }
-    }
+    },
+
+
 
 ] as Routes

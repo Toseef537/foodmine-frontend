@@ -1,8 +1,8 @@
 import { inject, Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, ReplaySubject, map, of, tap } from 'rxjs';
-import { IFood, ITag } from 'src/app/shared/models/food';
+import { BehaviorSubject, Observable, map, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { FOODS_BY_ID_URL, FOODS_BY_SEARCH_URL, FOODS_BY_TAG_URL, FOODS_TAGS_URL, FOODS_URL, LOGIN_URL } from 'src/app/constants/urls';
+import { FOODS_URL, FOODS_BY_SEARCH_URL, FOODS_BY_ID_URL, FOODS_TAGS_URL, FOODS_BY_TAG_URL } from 'src/app/common/constants/urls';
+import { IFood, ITag } from '../../models/food';
 @Injectable({
   providedIn: 'root'
 })

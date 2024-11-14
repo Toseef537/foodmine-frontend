@@ -2,10 +2,10 @@ import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { InputContainerComponent } from '../../components/input-container/input-container.component';
-import { FoodService } from '../../services/food.service';
 import { DialogRef } from '@angular/cdk/dialog';
-import { HomeService } from '../../services/website/home.service';
 import { ToastrService } from 'ngx-toastr';
+import { FoodService } from 'src/app/core/services/food.service';
+import { HomeService } from 'src/app/core/services/website/home.service';
 
 @Component({
   selector: 'add-food',

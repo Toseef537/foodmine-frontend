@@ -1,14 +1,14 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { UserService } from 'src/app/common/services/user.service';
-import { CartService } from 'src/app/common/services/website/cart.service';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Order } from 'src/app/shared/models/order';
 import { ToastrService } from 'ngx-toastr';
 import { InputContainerComponent } from 'src/app/common/components/input-container/input-container.component';
 import { Router, RouterLink } from '@angular/router';
 import { MapComponent } from 'src/app/common/components/map/map.component';
-import { OrderService } from 'src/app/common/services/order.service';
+import { Order } from 'src/app/core/models/order';
+import { OrderService } from 'src/app/core/services/order.service';
+import { UserService } from 'src/app/core/services/user.service';
+import { CartService } from 'src/app/core/services/website/cart.service';
 
 @Component({
   selector: 'app-checkout-page',
@@ -33,7 +33,7 @@ export class CheckoutPageComponent implements OnInit {
     this.order.totalPrice = cart.totalPrice;
   }
   ngOnInit(): void {
-    let { name, address } = this.#userService.currentUser;
+    let { name, address } = this.#userService.currentUser();
     this.checkoutForm = this.#fb.group({
       name: [name, Validators.required],
       address: [address, Validators.required]

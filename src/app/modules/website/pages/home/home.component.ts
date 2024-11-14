@@ -1,16 +1,16 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule, NgFor, NgOptimizedImage } from '@angular/common';
-import { IFood, ITag } from 'src/app/shared/models/food';
-import { HomeService } from 'src/app/common/services/website/home.service';
-import { ActivatedRoute, Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink, RouterLinkActive} from '@angular/router';
 import { SearchComponent } from '../../components/search/search.component';
 import { NotFoundComponent } from 'src/app/common/components/not-found/not-found.component';
-import { UserService } from 'src/app/common/services/user.service';
+import { IFood, ITag } from 'src/app/core/models/food';
+import { UserService } from 'src/app/core/services/user.service';
+import { HomeService } from 'src/app/core/services/website/home.service';
 
 @Component({
   selector: 'website-home',
   standalone: true,
-  imports: [CommonModule, NgOptimizedImage, NgFor, RouterLink, SearchComponent,RouterLinkActive,NotFoundComponent],
+  imports: [CommonModule, NgOptimizedImage, NgFor, RouterLink, SearchComponent, RouterLinkActive, NotFoundComponent],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
@@ -20,8 +20,8 @@ export class HomeComponent {
   searchValue: any;
   #homeService: HomeService = inject(HomeService);
   #router: Router = inject(Router);
-  #userService:UserService=inject(UserService);
-  isAuth=this.#userService.currentUser.token;
+  #userService: UserService = inject(UserService);
+  isAuth = this.#userService.currentUser()?.token;
 
   /**
    * Getting All Food Items
@@ -36,11 +36,11 @@ export class HomeComponent {
           this.foodItems = items;
         });
 
-      }else if(param['tag']){
-        this.#homeService.getFoodByTag(param['tag']).subscribe((items)=>{
-          this.foodItems=items;
+      } else if (param['tag']) {
+        this.#homeService.getFoodByTag(param['tag']).subscribe((items) => {
+          this.foodItems = items;
         })
-      } 
+      }
       else {
         // if(this.isAuth){
         //   activatedRoute.data.subscribe((res)=>{
@@ -52,8 +52,8 @@ export class HomeComponent {
         //     this.foodItems=foods;
         //   })
         // }
-        this.#homeService.getAllFoodItems().subscribe((foods)=>{
-          this.foodItems=foods;
+        this.#homeService.getAllFoodItems().subscribe((foods) => {
+          this.foodItems = foods;
         })
       }
     })

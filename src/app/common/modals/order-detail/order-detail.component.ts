@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DIALOG_DATA } from '@angular/cdk/dialog';
-import { Order } from 'src/app/shared/models/order';
+import { Order } from 'src/app/core/models/order';
 
 @Component({
   selector: 'app-order-detail',

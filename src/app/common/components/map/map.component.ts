@@ -1,8 +1,8 @@
 import { Component, ElementRef, inject, Input, OnChanges, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { icon, LatLng, LatLngExpression, LatLngTuple, LeafletMouseEvent, map, Map, marker, Marker, tileLayer } from 'leaflet';
-import { LocationService } from '../../services/location.service';
-import { Order } from 'src/app/shared/models/order';
+import { Order } from 'src/app/core/models/order';
+import { LocationService } from 'src/app/core/services/location.service';
 
 @Component({
   selector: 'map',

@@ -3,9 +3,9 @@ import { CommonModule } from '@angular/common';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { InputContainerComponent } from 'src/app/common/components/input-container/input-container.component';
-import { UserService } from 'src/app/common/services/user.service';
-import { IUserLogin, IUserRegister } from 'src/app/shared/interfaces/user';
-import { PasswordMatchValidator } from 'src/app/shared/validators/password_match_validator';
+import { IUserRegister } from 'src/app/core/interfaces/user';
+import { UserService } from 'src/app/core/services/user.service';
+import { PasswordMatchValidator } from 'src/app/core/validators/password_match_validator';
 
 @Component({
   selector: 'app-register',
