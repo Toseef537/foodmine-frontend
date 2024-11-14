@@ -6,11 +6,9 @@ import { CheckoutPageComponent } from "./pages/checkout-page/checkout-page.compo
 import { PaymentPageComponent } from "./pages/payment-page/payment-page.component";
 import { homeResolver } from "./pages/home/home.resolver";
 import { AuthGuard } from "src/app/core/guards/auth.guard";
-import { LoginComponent } from "../auth/login/login.component";
-import { RegisterComponent } from "../auth/register/register.component";
 
 export default [
-    // { path: '', redirectTo: 'home', pathMatch: 'full' },
+    { path: '', redirectTo: 'home', pathMatch: 'full' },
     {
         path: 'home',
         component:HomeComponent,
@@ -23,10 +21,6 @@ export default [
     { path: 'food/:id', component: FoodDetailComponent },
     { path: 'tag/:tag', component: HomeComponent },
     { path: 'cart-page',component: CartPageComponent },
-    // { path: 'login', component: LoginComponent },
-    // { path: 'register', component: RegisterComponent },
-    // { path: 'checkout', component: CheckoutPageComponent, canActivate: [AuthGuard] },
-    // { path: 'payment', component: PaymentPageComponent, canActivate: [AuthGuard] }
-
-
+    { path: 'checkout', component: CheckoutPageComponent, canActivate: [AuthGuard] },
+    { path: 'payment', component: PaymentPageComponent, canActivate: [AuthGuard] }
 ] as Routes
