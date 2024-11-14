@@ -2,14 +2,14 @@ import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { UserService } from 'src/app/common/services/user.service';
-import { IUserLogin } from 'src/app/shared/interfaces/user';
 import { InputContainerComponent } from 'src/app/common/components/input-container/input-container.component';
+import { IUserLogin } from 'src/app/core/interfaces/user';
+import { UserService } from 'src/app/core/services/user.service';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterLink,InputContainerComponent],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink, InputContainerComponent],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
     })
-  //  this.returnurl= this.#activatedRoute.snapshot.queryParams['returnurl'];
+    //  this.returnurl= this.#activatedRoute.snapshot.queryParams['returnurl'];
   }
 
   getFormControl(control: string): FormControl {
@@ -42,22 +42,10 @@ export class LoginComponent implements OnInit {
       this.loginForm.markAllAsTouched()
       return;
     }
-
-    // Getting Login Credentials 
     const user: IUserLogin = {
       email: this.getFormControl('email').value,
       password: this.getFormControl('password').value
     };
-    this.#userService.login(user).subscribe((res) => {
-      console.log('res from server', res);
-      if(res.isAdmin){
-        this.#router.navigateByUrl('/dashboard');
-        return;
-      }
-      this.#router.navigateByUrl(this.returnurl)
-
-    })
-
-
+    this.#userService.login(user).subscribe();
   }
 }

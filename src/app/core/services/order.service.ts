@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { GET_ALL_ORDERS_URL, ORDER_CREATE_URL, ORDER_NEW_FOR_CURRENT_USER_URL } from 'src/app/constants/urls';
-import { Order } from 'src/app/shared/models/order';
+import { ORDER_CREATE_URL, ORDER_NEW_FOR_CURRENT_USER_URL, GET_ALL_ORDERS_URL } from 'src/app/common/constants/urls';
+import { Order } from '../models/order';
 
 @Injectable({
   providedIn: 'root'

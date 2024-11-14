@@ -1,14 +1,14 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule, NgFor, NgIf, NgOptimizedImage } from '@angular/common';
-import { IFood } from 'src/app/shared/models/food';
-import { HomeService } from 'src/app/common/services/website/home.service';
 import { MatDialogModule } from '@angular/material/dialog';
 import { Dialog } from '@angular/cdk/dialog';
 import { AddFoodComponent } from 'src/app/common/modals/add-food/add-food.component';
-import { FoodService } from 'src/app/common/services/food.service';
 import { ToastrService } from 'ngx-toastr';
 import { UpdateFoodComponent } from 'src/app/common/modals/update-food/update-food.component';
 import { Observable } from 'rxjs';
+import { IFood } from 'src/app/core/models/food';
+import { FoodService } from 'src/app/core/services/food.service';
+import { HomeService } from 'src/app/core/services/website/home.service';
 @Component({
   selector: 'app-home',
   standalone: true,

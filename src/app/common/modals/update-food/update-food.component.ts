@@ -2,13 +2,12 @@ import { Component, Inject, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog';
 import { FormGroup, FormBuilder, Validators, FormControl, ReactiveFormsModule } from '@angular/forms';
-import { FoodService } from '../../services/food.service';
 import { InputContainerComponent } from '../../components/input-container/input-container.component';
-import { HomeService } from '../../services/website/home.service';
 import { MatDialogModule } from '@angular/material/dialog';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { IFood } from 'src/app/shared/models/food';
 import { ToastrService } from 'ngx-toastr';
+import { IFood } from 'src/app/core/models/food';
+import { FoodService } from 'src/app/core/services/food.service';
+import { HomeService } from 'src/app/core/services/website/home.service';
 @Component({
   selector: 'app-update-food',
   standalone: true,

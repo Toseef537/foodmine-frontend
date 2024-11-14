@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Order } from 'src/app/shared/models/order';
 import { RouterLink } from '@angular/router';
+import { Order } from 'src/app/core/models/order';
 
 @Component({
   selector: 'order-items-list',

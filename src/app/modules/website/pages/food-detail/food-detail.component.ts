@@ -1,11 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { HomeService } from 'src/app/common/services/website/home.service';
-import { IFood } from 'src/app/shared/models/food';
-import { CartService } from 'src/app/common/services/website/cart.service';
 import { NotFoundComponent } from 'src/app/common/components/not-found/not-found.component';
-import { UserService } from 'src/app/common/services/user.service';
+import { IFood } from 'src/app/core/models/food';
+import { UserService } from 'src/app/core/services/user.service';
+import { CartService } from 'src/app/core/services/website/cart.service';
+import { HomeService } from 'src/app/core/services/website/home.service';
 
 @Component({
   selector: 'app-food-detail',
@@ -36,10 +36,7 @@ export class FoodDetailComponent {
   }
 
   addToCart() {
-    if(this.#userService.currentUser.token){
-      this.#cartService.addToCart(this.food);
+    this.#cartService.addToCart(this.food);
       this.#router.navigateByUrl('/cart-page');
-    }
-    this.#router.navigateByUrl('/login')
   }
 }
