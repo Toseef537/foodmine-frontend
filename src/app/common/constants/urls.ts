@@ -1,6 +1,6 @@
 
-const BASE_API = "https://foodmine-backend-psi.vercel.app";
-// const BASE_API="http://localhost:5000";
+// const BASE_API = "https://foodmine-backend-psi.vercel.app";
+const BASE_API="http://localhost:5000";
 export const FOODS_URL = BASE_API + "/api/foods";
 export const ADD_FOOD_URL = FOODS_URL + "/add-food";
 export const FOODS_TAGS_URL = FOODS_URL + "/tags";
