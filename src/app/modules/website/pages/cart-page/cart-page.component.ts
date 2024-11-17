@@ -21,14 +21,12 @@ export class CartPageComponent implements OnInit {
   #router: Router = inject(Router);
 
   constructor() {
-    // #cartService.loadCartFromBackend().subscribe();
-
   }
   ngOnInit(): void {
-    this.#cartService.loadCartFromBackend().subscribe()
-    this.cart = this.#cartService.currentcart;
-    console.log('cart items in cart ts file', this.cart);
-
+    this.#cartService.getCartItem();
+    this.#cartService.getCartObservable.subscribe((cart) => {
+      this.cart = cart;
+    })
   }
 
 

@@ -3,9 +3,9 @@ import { CommonModule } from '@angular/common';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { InputContainerComponent } from 'src/app/common/components/input-container/input-container.component';
-import { IUserRegister } from 'src/app/core/interfaces/user';
 import { UserService } from 'src/app/core/services/user.service';
 import { PasswordMatchValidator } from 'src/app/core/validators/password_match_validator';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-register',
@@ -20,6 +20,9 @@ export class RegisterComponent {
   #userService: UserService = inject(UserService);
   #activatedRoute: ActivatedRoute = inject(ActivatedRoute);
   #router: Router = inject(Router);
+  #toastrService: ToastrService = inject(ToastrService);
+
+
   returnurl: string = '';
   isSubmitted: boolean = false;
   ngOnInit(): void {
@@ -49,22 +52,15 @@ export class RegisterComponent {
       this.signupForm.markAllAsTouched()
       return;
     }
-    console.log(this.signupForm.value);
-
-    const formValue = this.signupForm.value;
-    const user: IUserRegister = {
-      name: formValue.name,
-      email: formValue.email,
-      password: formValue.password,
-      confirmPassword: formValue.confirmPassword,
-      address: formValue.address
-    };
-    this.#userService.userSignup(user).subscribe((res) => {
-      console.log('res from server', res);
-      this.#router.navigateByUrl(this.returnurl)
-
-    })
-
-
+    this.#userService.userSignup(this.signupForm.value).subscribe({
+      next: (res) => {
+        this.#router.navigateByUrl(this.returnurl);
+        this.#toastrService.success(`Welcome to FoodMine ${res.name}`, 'Register Successfull');
+      },
+      error: (errorResponse) => {
+        this.#toastrService.error(errorResponse.error, "Something went wrong");
+      }
+    }
+    )
   }
 }

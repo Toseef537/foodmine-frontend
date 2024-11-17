@@ -20,7 +20,7 @@ export default [
     { path: 'search/:searchTerm', component: HomeComponent },
     { path: 'food/:id', component: FoodDetailComponent },
     { path: 'tag/:tag', component: HomeComponent },
-    { path: 'cart-page',component: CartPageComponent },
+    { path: 'cart',component: CartPageComponent },
     { path: 'checkout', component: CheckoutPageComponent, canActivate: [AuthGuard] },
     { path: 'payment', component: PaymentPageComponent, canActivate: [AuthGuard] }
 ] as Routes
