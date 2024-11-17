@@ -11,7 +11,7 @@ import { CartService } from 'src/app/core/services/website/cart.service';
 @Component({
   selector: 'website-header',
   standalone: true,
-  imports: [CommonModule, RouterLink, MatButtonModule, MatMenuModule, MatIconModule,NgOptimizedImage],
+  imports: [CommonModule, RouterLink, MatButtonModule, MatMenuModule, MatIconModule, NgOptimizedImage],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
@@ -21,19 +21,20 @@ export class HeaderComponent {
   #cartService: CartService = inject(CartService);
   #userService: UserService = inject(UserService);
   constructor() {
-    this.#cartService.getCartObservable().subscribe((res) => {
-      this.totalCount = res.totalCount;
+    this.#cartService.getCartObservable.subscribe((res) => {
+      this.totalCount = res.items.length;
     })
     this.#userService.userObservable.subscribe((newUser) => {
       this.user = newUser;
     })
 
   }
- get isAuth(){
-  return this.user.token;
- }
+  get isAuth() {
+    return this.#userService.isVerified;
+  }
 
-  logout(){
+  logout() {
     this.#userService.logout();
+    this.#cartService.clearCart();
   }
 }

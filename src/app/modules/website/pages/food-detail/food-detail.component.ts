@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { NotFoundComponent } from 'src/app/common/components/not-found/not-found.component';
@@ -14,7 +14,7 @@ import { HomeService } from 'src/app/core/services/website/home.service';
   templateUrl: './food-detail.component.html',
   styleUrls: ['./food-detail.component.scss']
 })
-export class FoodDetailComponent {
+export class FoodDetailComponent implements OnInit {
   #homeService: HomeService = inject(HomeService);
   #cartService: CartService = inject(CartService);
   #userService: UserService = inject(UserService)
@@ -29,14 +29,18 @@ export class FoodDetailComponent {
       if (this.id) {
         this.#homeService.getFoodById(this.id).subscribe((item) => {
           this.food = item;
+          console.log('id in constructor',this.food.id);
+          
 
         })
       }
     })
   }
+  ngOnInit(): void {
+    throw new Error('Method not implemented.');
+  }
 
   addToCart() {
     this.#cartService.addToCart(this.food);
-      this.#router.navigateByUrl('/cart-page');
   }
 }

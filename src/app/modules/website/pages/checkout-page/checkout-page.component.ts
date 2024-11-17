@@ -33,7 +33,7 @@ export class CheckoutPageComponent implements OnInit {
     this.order.totalPrice = cart.totalPrice;
   }
   ngOnInit(): void {
-    let { name, address } = this.#userService.currentUser();
+    let { name, address } = this.#userService.currentUser;
     this.checkoutForm = this.#fb.group({
       name: [name, Validators.required],
       address: [address, Validators.required]
@@ -49,10 +49,10 @@ export class CheckoutPageComponent implements OnInit {
       this.#toastrService.warning('Please fill the inputs', 'Invalid Inputs')
       return;
     }
-    // if (!this.order.addressLatlng) {
-    //   this.#toastrService.warning('Please Select Your Location On Map', 'Location')
-    //   return;
-    // }
+    if (!this.order.addressLatlng) {
+      this.#toastrService.warning('Please Select Your Location On Map', 'Location')
+      return;
+    }
     this.order.name = this.checkoutForm.value.name;
     this.order.address = this.checkoutForm.value.address;
     this.#orderService.createOrder(this.order).subscribe({
