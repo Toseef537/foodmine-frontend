@@ -3,10 +3,7 @@
 @tailwind components;
 @tailwind utilities;
 @import 'ngx-toastr/toastr';
-// a {
-//     @apply text-text-primary hover:bg-text-hover hover:text-[#ffff]  min-w-96 p-2 text-base;
-// }
-
+@import "primeicons/primeicons.css";
 @import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@200..900&display=swap');
 
 html,

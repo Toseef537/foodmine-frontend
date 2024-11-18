@@ -48,7 +48,6 @@ export class LoginComponent implements OnInit {
     this.#userService.login(this.loginForm.value).subscribe({
       next: (res) => {
         this.#router.navigateByUrl('/dashboard');
-        this.#toastrService.success(`Welcome to FoodMine ${res.name}`, "Login Successfull");
         this.#cartService.syncLocalCartToBackend();
       },
       error: (errorResponse) => {

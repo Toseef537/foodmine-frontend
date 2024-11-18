@@ -6,6 +6,7 @@ import { Cart } from '../../models/cart';
 import { IFood } from '../../models/food';
 import { CartItem } from '../../models/items';
 import { UserService } from '../user.service';
+import { DialogService } from 'primeng/dynamicdialog';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,7 @@ export class CartService {
   cartSubject: BehaviorSubject<any> = new BehaviorSubject(this.cart);
   #http: HttpClient = inject(HttpClient);
   #userService: UserService = inject(UserService);
+
 
   constructor() {
     this.cart = this.getCartFromLocalStorage();

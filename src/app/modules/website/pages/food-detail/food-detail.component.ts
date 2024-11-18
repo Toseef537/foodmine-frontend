@@ -1,12 +1,11 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { NotFoundComponent } from 'src/app/common/components/not-found/not-found.component';
 import { IFood } from 'src/app/core/models/food';
-import { UserService } from 'src/app/core/services/user.service';
 import { CartService } from 'src/app/core/services/website/cart.service';
 import { HomeService } from 'src/app/core/services/website/home.service';
-
+import { DynamicDialogRef } from 'primeng/dynamicdialog';
 @Component({
   selector: 'app-food-detail',
   standalone: true,
@@ -14,33 +13,34 @@ import { HomeService } from 'src/app/core/services/website/home.service';
   templateUrl: './food-detail.component.html',
   styleUrls: ['./food-detail.component.scss']
 })
-export class FoodDetailComponent implements OnInit {
-  #homeService: HomeService = inject(HomeService);
-  #cartService: CartService = inject(CartService);
-  #userService: UserService = inject(UserService)
-  #router: Router = inject(Router);
+export class FoodDetailComponent {
   food!: IFood;
   id!: number;
+  ref: DynamicDialogRef | undefined;
+  // Injecting Dependencies 
+  #homeService: HomeService = inject(HomeService);
+  #cartService: CartService = inject(CartService);
 
+  // Getting Item By ID 
   constructor(activatedRoute: ActivatedRoute) {
     activatedRoute.params.subscribe((param) => {
       this.id = param['id'];
-
       if (this.id) {
         this.#homeService.getFoodById(this.id).subscribe((item) => {
           this.food = item;
-          console.log('id in constructor',this.food.id);
-          
+          console.log('id in constructor', this.food.id);
+
 
         })
       }
     })
   }
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
-  }
 
+  /**
+   * Add Item To Cart 
+   */
   addToCart() {
     this.#cartService.addToCart(this.food);
+
   }
 }

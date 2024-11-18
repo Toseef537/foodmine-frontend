@@ -19,20 +19,18 @@ import { CartService } from 'src/app/core/services/website/cart.service';
 })
 export class CheckoutPageComponent implements OnInit {
   checkoutForm!: FormGroup;
+  order: Order = new Order();
+
+  // Injecting Dependencies 
   #userService = inject(UserService);
   #cartService = inject(CartService);
   #toastrService = inject(ToastrService);
   #orderService = inject(OrderService);
   #router = inject(Router);
-
   #fb = inject(FormBuilder);
-  order: Order = new Order();
+
+  // Grouping Form Controls 
   constructor() {
-    const cart = this.#cartService.currentcart;
-    this.order.items = cart.items;
-    this.order.totalPrice = cart.totalPrice;
-  }
-  ngOnInit(): void {
     let { name, address } = this.#userService.currentUser;
     this.checkoutForm = this.#fb.group({
       name: [name, Validators.required],
@@ -40,32 +38,37 @@ export class CheckoutPageComponent implements OnInit {
     })
   }
 
+  // Updating Order Object 
+  ngOnInit(): void {
+    const cart = this.#cartService.currentcart;
+    this.order.items = cart.items;
+    this.order.totalPrice = cart.totalPrice;
+  }
+
+  // Getting Form Control According to Parameters
   private fc(control: string): FormControl {
     return this.checkoutForm.get(control) as FormControl;
   }
 
+
+  /**
+   * Create Order
+   */
   createOrder() {
     if (this.checkoutForm.invalid) {
       this.#toastrService.warning('Please fill the inputs', 'Invalid Inputs')
-      return;
-    }
-    if (!this.order.addressLatlng) {
-      this.#toastrService.warning('Please Select Your Location On Map', 'Location')
       return;
     }
     this.order.name = this.checkoutForm.value.name;
     this.order.address = this.checkoutForm.value.address;
     this.#orderService.createOrder(this.order).subscribe({
       next: () => {
-        this.#toastrService.success('Your Order is Placed Successfully!')
         this.#router.navigateByUrl('/');
       },
       error: (errorResponse) => {
         this.#toastrService.error(errorResponse.error, 'Cart');
       }
     })
-    console.log('value is dfdf', this.checkoutForm.value);
-
   }
 
 
