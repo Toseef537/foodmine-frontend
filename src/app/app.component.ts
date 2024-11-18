@@ -4,11 +4,11 @@ import { NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Rout
 import { LoadingComponent } from './common/components/loading/loading.component';
 import { Observable } from 'rxjs';
 import { LoadingService } from './core/services/loading.service';
-
+import { ScrollTopModule } from 'primeng/scrolltop';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet,LoadingComponent],
+  imports: [CommonModule, RouterOutlet,LoadingComponent,ScrollTopModule],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })

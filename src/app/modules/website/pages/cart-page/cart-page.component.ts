@@ -6,22 +6,23 @@ import { Cart } from 'src/app/core/models/cart';
 import { CartItem } from 'src/app/core/models/items';
 import { UserService } from 'src/app/core/services/user.service';
 import { CartService } from 'src/app/core/services/website/cart.service';
+import { MultiSelectModule } from 'primeng/multiselect';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-cart-page',
   standalone: true,
-  imports: [CommonModule, RouterLink, NotFoundComponent],
+  imports: [CommonModule, RouterLink, NotFoundComponent, MultiSelectModule, FormsModule],
   templateUrl: './cart-page.component.html',
   styleUrls: ['./cart-page.component.scss']
 })
 export class CartPageComponent implements OnInit {
   cart!: Cart;
-  #userService: UserService = inject(UserService);
   #cartService: CartService = inject(CartService);
-  #router: Router = inject(Router);
+  cities!: any[];
+  selectedCities!: any[];
 
-  constructor() {
-  }
+  // Getting Cart Data 
   ngOnInit(): void {
     this.#cartService.getCartItem();
     this.#cartService.getCartObservable.subscribe((cart) => {
@@ -29,11 +30,16 @@ export class CartPageComponent implements OnInit {
     })
   }
 
-
+  /**
+   * Remove Item From Cart
+   */
   removeFromCart(cartItem: CartItem) {
     this.#cartService.removeFromCart(cartItem.food.id, this.cart.id);
   }
 
+  /**
+   * Change Quantity of Item
+   */
   changeQuantity(cartItem: CartItem, quantityInString: string) {
     let quantity = parseInt(quantityInString);
     console.log('cartItem', quantity);
